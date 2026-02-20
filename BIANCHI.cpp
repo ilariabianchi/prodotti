@@ -16,7 +16,12 @@ void aggiungi (prodotto p, prodotto v[], int &d){
 
 //funzione visualizza
 void visualizza (prodotto v[], int d){
-	
+	for(int i=0; i<d; i++){
+		cout<<"\nnome: "<<v[i].nome<<endl;
+		cout<<"categoria: "<<v[i].categoria<<endl;
+		cout<<"prezzo: "<<v[i].prezzo<<endl;
+	}
+	cout<<endl;
 }
 
 //funzione cerca
@@ -37,14 +42,14 @@ bool modifica (prodotto p, prodotto v[], int d){
 int main(int argc, char** argv){
 	 
 	prodotto p;
-	prodotto supermercato[100];
+	prodotto supermercato[0];
 	//dimensione array
 	int d=sizeof(supermercato)/sizeof(supermercato[0]);
 	
 	//menù per chiamare le funzionalità del programma
 	int opzione;
 	do{
-		cout<<"1 - aggiungi \n2 - visualizza \n3 - cerca \n4 - cancella \n5 - modifica \n";
+		cout<<"1 - aggiungi \n2 - visualizza \n3 - cerca \n4 - cancella \n5 - modifica \n0 - stop \n";
 		cout<<"inserisci l'opzione: ";
 		cin>>opzione;
 		
