@@ -10,7 +10,8 @@ struct prodotto{
 
 //funzione aggiungi
 void aggiungi (prodotto p, prodotto v[], int &d){
-	
+	v[d]=p;
+	d++;
 }
 
 //funzione visualizza
@@ -47,10 +48,20 @@ int main(int argc, char** argv){
 		cout<<"inserisci l'opzione: ";
 		cin>>opzione;
 		
+		fflush(stdin);
+		
 		switch(opzione){
 			case 1:{
-				//inserimento
+				//aggiunta
+				cout<<"\ninserisci il nuovo prodotto"<<endl;
+				cout<<"nome: ";
+				getline(cin, p.nome);
+				cout<<"categoria: ";
+				getline(cin, p.categoria);
+				cout<<"prezzo: ";
+				cin>>p.prezzo;
 				aggiungi(p, supermercato, d);
+				cout<<endl;
 			}
 			break;
 			
@@ -77,7 +88,7 @@ int main(int argc, char** argv){
 				bool cambiamento=modifica(p, supermercato, d);	
 			}
 			break;
-		}
+		}	
 		
 	}while(opzione!=0);
 	
