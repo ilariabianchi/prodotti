@@ -26,7 +26,14 @@ void visualizza (prodotto v[], int d){
 
 //funzione cerca
 int cerca (prodotto p, prodotto v[], int d){
-	
+	for(int i=0; i<d; i++){
+		if(v[i].nome==p.nome){
+			cout<<"il prodotto si trova nella poizione "<<i<<endl;
+		}
+		else{
+			return -1;
+		}
+	}
 }
 
 //funzione cancella
@@ -78,19 +85,22 @@ int main(int argc, char** argv){
 			
 			case 3:{
 				//cerca
-				int posizione=cerca(p, supermercato, d);	
+				cout<<"\ninserisci il nome del prodotto da cercare: ";
+				getline(cin, p.nome);
+				int posizione=cerca(p, supermercato, d);
+				cout<<endl;
 			}
 			break;
 			
 			case 4:{
 				//cancellazione
-				bool cancellazione=cancella(p, supermercato, d);	
+				bool canc=cancella(p, supermercato, d);	
 			}
 			break;
 			
 			case 5:{
 				//modifica
-				bool cambiamento=modifica(p, supermercato, d);	
+				bool mod=modifica(p, supermercato, d);	
 			}
 			break;
 		}	
