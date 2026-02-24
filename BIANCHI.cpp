@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 using namespace std;
 
 //struttura prodotto con nome, categoria, prezzo
@@ -15,12 +16,14 @@ void aggiungi (prodotto p, prodotto v[], int &d){
 }
 
 //funzione visualizza
-void visualizza (prodotto v[], int d){
+string visualizza (prodotto v[], int d){
+	string s;
 	for(int i=0; i<d; i++){
-		cout<<"\nnome: "<<v[i].nome<<endl;
-		cout<<"categoria: "<<v[i].categoria<<endl;
-		cout<<"prezzo: "<<v[i].prezzo<<endl;
+		s+=v[i].nome+"\t";
+		s+=v[i].categoria+"\t";
+		//s+=v[i].prezzo+"\n";
 	}
+	return s;
 	cout<<endl;
 }
 
@@ -79,7 +82,7 @@ int main(int argc, char** argv){
 			
 			case 2:{
 				//visualizzazione
-				visualizza(supermercato, d);	
+				cout<<visualizza(supermercato, d);	
 			}
 			break;
 			
@@ -109,3 +112,4 @@ int main(int argc, char** argv){
 	
 	return 0;
 }
+
