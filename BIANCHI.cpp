@@ -21,7 +21,8 @@ string visualizza (prodotto v[], int d){
 	for(int i=0; i<d; i++){
 		s+=v[i].nome+"\t";
 		s+=v[i].categoria+"\t";
-		//s+=v[i].prezzo+"\n";
+		//converto prezzo in stringa
+		s+=to_string(v[i].prezzo)+"\n";
 	}
 	return s;
 	cout<<endl;
@@ -112,4 +113,5 @@ int main(int argc, char** argv){
 	
 	return 0;
 }
+
 
