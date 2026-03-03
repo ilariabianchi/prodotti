@@ -32,12 +32,10 @@ string visualizza (prodotto v[], int d){
 int cerca (prodotto p, prodotto v[], int d){
 	for(int i=0; i<d; i++){
 		if(v[i].nome==p.nome){
-			cout<<"il prodotto si trova nella poizione "<<i<<endl;
-		}
-		else{
-			return -1;
+			return i;
 		}
 	}
+	return -1;
 }
 
 //funzione cancella
@@ -92,6 +90,7 @@ int main(int argc, char** argv){
 				cout<<"\ninserisci il nome del prodotto da cercare: ";
 				getline(cin, p.nome);
 				int posizione=cerca(p, supermercato, d);
+				cout<<"il prodotto si trova in posizione: "<<posizione;
 				cout<<endl;
 			}
 			break;
@@ -113,5 +112,6 @@ int main(int argc, char** argv){
 	
 	return 0;
 }
+
 
 
