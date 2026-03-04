@@ -39,21 +39,31 @@ int cerca (prodotto p, prodotto v[], int d){
 }
 
 //funzione cancella
-bool cancella (prodotto p, prodotto v[], int d){
+void cancella (prodotto p, prodotto v[], int d){
 	
 }
 
 //funzione modifica
 bool modifica (prodotto p, prodotto v[], int d){
-	
+    int posizione=cerca(p, v, d);
+    if(posizione==-1){
+        return false; 
+    }
+    cout<<"nuovo nome: ";
+    getline(cin, v[posizione].nome);
+    cout<<"nuova categoria: ";
+    getline(cin, v[posizione].categoria);
+    cout<<"nuovo prezzo: ";
+    cin>> v[posizione].prezzo;
+    return true;
 }
 
 int main(int argc, char** argv){
 	 
 	prodotto p;
-	prodotto supermercato[0];
+	prodotto supermercato[100];
 	//dimensione array
-	int d=sizeof(supermercato)/sizeof(supermercato[0]);
+	int d=0;
 	
 	//menù per chiamare le funzionalità del programma
 	int opzione;
@@ -81,7 +91,7 @@ int main(int argc, char** argv){
 			
 			case 2:{
 				//visualizzazione
-				cout<<visualizza(supermercato, d);	
+				cout<<endl<<visualizza(supermercato, d)<<endl;	
 			}
 			break;
 			
@@ -97,21 +107,28 @@ int main(int argc, char** argv){
 			
 			case 4:{
 				//cancellazione
-				bool canc=cancella(p, supermercato, d);	
+
 			}
 			break;
 			
 			case 5:{
 				//modifica
-				bool mod=modifica(p, supermercato, d);	
-			}
-			break;
-		}	
+				cout<<"\ninserisci il nome del prodotto da modificare: ";
+				fflush(stdin);
+    			getline(cin, p.nome);
+				bool mod=modifica(p, supermercato, d);
+				if(mod==true){
+     	    	cout<<"prodotto modificato\n";
+   				}else{
+       	 		cout<<"prodotto non trovato\n";
+    			}
+				break;
+				}	
+		}
 		
 	}while(opzione!=0);
 	
 	return 0;
 }
-
 
 
