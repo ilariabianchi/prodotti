@@ -11,7 +11,9 @@ struct prodotto{
 
 //funzione aggiungi
 void aggiungi (prodotto p, prodotto v[], int &d){
+	//assegno il prodotto aggiunto nell'ultima posizione dell'array
 	v[d]=p;
+	//aumento dimensione
 	d++;
 }
 
@@ -19,47 +21,68 @@ void aggiungi (prodotto p, prodotto v[], int &d){
 string visualizza (prodotto v[], int d){
 	string s;
 	for(int i=0; i<d; i++){
+		//aggiungo tutti i campi in una stringa
 		s+=v[i].nome+"\t";
 		s+=v[i].categoria+"\t";
 		//converto prezzo in stringa
 		s+=to_string(v[i].prezzo)+"\n";
 	}
+	//restituisco la stringa con tutti i campi della struct
 	return s;
 	cout<<endl;
 }
 
 //funzione cerca
 int cerca (prodotto p, prodotto v[], int d){
+	//scansiono array
 	for(int i=0; i<d; i++){
+		//se il nome del prodotto cosrrisponde con quello che sto ceracndo restituisco la posizione
 		if(v[i].nome==p.nome){
 			return i;
 		}
 	}
+	//altrimenti se non lo trova restituisce -1
 	return -1;
 }
 
 //funzione cancella
-void cancella (prodotto p, prodotto v[], int d){
-	
+bool cancella (prodotto p, prodotto v[], int &d){
+	//cerco in che posizione si trova l'elemento che voglio cancellare
+	int posizione=cerca(p, v, d);
+	//se la posizione è -1 e quindi l'elemento non ce restituisce falso
+	if(posizione==-1){
+		return false;
+	}
+	//se l'elemento viene trovato gli elementi vengono scalati di uno
+	for(int i=posizione; i<d; i++){
+		v[i]=v[i+1];
+	}
+	//diminuisco la dimensione
+	d--;
+	return true;
 }
 
 //funzione modifica
 bool modifica (prodotto p, prodotto v[], int d){
+		//cerco in che posizione si trova l'elemento che voglio modificare
     int posizione=cerca(p, v, d);
+    	//se la posizione è -1 e quindi l'elemento non ce restituisce falso
     if(posizione==-1){
         return false; 
     }
+    //altrimenti inserisco i nuovi campi modificati
     cout<<"nuovo nome: ";
     getline(cin, v[posizione].nome);
     cout<<"nuova categoria: ";
     getline(cin, v[posizione].categoria);
     cout<<"nuovo prezzo: ";
-    cin>> v[posizione].prezzo;
+    cin>>v[posizione].prezzo;
     return true;
 }
 
 int main(int argc, char** argv){
-	 
+	
+	cout<<"programma gestione prodotti supermercato\nopzioni:\n";
 	prodotto p;
 	prodotto supermercato[100];
 	//dimensione array
@@ -100,14 +123,22 @@ int main(int argc, char** argv){
 				cout<<"\ninserisci il nome del prodotto da cercare: ";
 				getline(cin, p.nome);
 				int posizione=cerca(p, supermercato, d);
-				cout<<"il prodotto si trova in posizione: "<<posizione;
+				cout<<"il prodotto si trova in posizione: "<<posizione<<endl;
 				cout<<endl;
 			}
 			break;
 			
 			case 4:{
 				//cancellazione
-
+				cout<<"\ninserisci il nome del prodotto da cancellare: ";
+				getline(cin, p.nome);
+				bool canc=cancella(p, supermercato, d);
+				if(canc==true){
+					cout<<"prodotto eliminato\n";
+				}else{
+					cout<<"prodotto non trovato\n";
+				}
+				cout<<endl;
 			}
 			break;
 			
@@ -118,17 +149,16 @@ int main(int argc, char** argv){
     			getline(cin, p.nome);
 				bool mod=modifica(p, supermercato, d);
 				if(mod==true){
-     	    	cout<<"prodotto modificato\n";
+     	    		cout<<"prodotto modificato\n";
    				}else{
-       	 		cout<<"prodotto non trovato\n";
+       	 			cout<<"prodotto non trovato\n";
     			}
-				break;
-				}	
+    			cout<<endl;
+			}
+			break;	
 		}
 		
 	}while(opzione!=0);
 	
 	return 0;
 }
-
-
