@@ -29,7 +29,6 @@ string visualizza (prodotto v[], int d){
 	}
 	//restituisco la stringa con tutti i campi della struct
 	return s;
-	cout<<endl;
 }
 
 //funzione cerca
@@ -45,7 +44,7 @@ int cerca (prodotto p, prodotto v[], int d){
 	return -1;
 }
 
-//funzione cancella
+//funzione cancella singolo
 bool cancella (prodotto p, prodotto v[], int &d){
 	//cerco in che posizione si trova l'elemento che voglio cancellare
 	int posizione=cerca(p, v, d);
@@ -54,7 +53,7 @@ bool cancella (prodotto p, prodotto v[], int &d){
 		return false;
 	}
 	//se l'elemento viene trovato gli elementi vengono scalati di uno
-	for(int i=posizione; i<d; i++){
+	for(int i=posizione; i<d-1; i++){
 		v[i]=v[i+1];
 	}
 	//diminuisco la dimensione
@@ -69,15 +68,9 @@ bool modifica (prodotto p, prodotto v[], int d){
     	//se la posizione è -1 e quindi l'elemento non ce restituisce falso
     if(posizione==-1){
         return false; 
-    }
-    //altrimenti inserisco i nuovi campi modificati
-    cout<<"nuovo nome: ";
-    getline(cin, v[posizione].nome);
-    cout<<"nuova categoria: ";
-    getline(cin, v[posizione].categoria);
-    cout<<"nuovo prezzo: ";
-    cin>>v[posizione].prezzo;
-    return true;
+    }else{
+    	return true;
+	}
 }
 
 int main(int argc, char** argv){
@@ -145,15 +138,21 @@ int main(int argc, char** argv){
 			case 5:{
 				//modifica
 				cout<<"\ninserisci il nome del prodotto da modificare: ";
-				fflush(stdin);
-    			getline(cin, p.nome);
+				getline(cin, p.nome);
 				bool mod=modifica(p, supermercato, d);
 				if(mod==true){
+					cout<<"prodotto trovato\n";
+					cout<<"inserisci nuovo nome: ";
+    				getline(cin, p.nome);
+    				cout<<"inserisci nuova categoria: ";
+    				getline(cin, p.categoria);
+    				cout<<"inserisci nuovo prezzo: ";
+    				cin>>p.prezzo;
      	    		cout<<"prodotto modificato\n";
+     	    		cout<<endl;
    				}else{
        	 			cout<<"prodotto non trovato\n";
     			}
-    			cout<<endl;
 			}
 			break;	
 		}
