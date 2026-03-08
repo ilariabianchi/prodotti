@@ -52,12 +52,14 @@ bool cancella (prodotto p, prodotto v[], int &d){
 	if(posizione==-1){
 		return false;
 	}
-	//se l'elemento viene trovato gli elementi vengono scalati di uno
-	for(int i=posizione; i<d-1; i++){
-		v[i]=v[i+1];
+	//se l'elemento viene trovato il ciclo continua fintanto che la funzione cerca trova un elemento con quel nome
+	while(posizione!=-1){
+		for(int i=posizione; i<d-1; i++){
+			v[i]=v[i+1];
+		}
+		d--;
+		posizione=cerca(p, v, d);
 	}
-	//diminuisco la dimensione
-	d--;
 	return true;
 }
 
