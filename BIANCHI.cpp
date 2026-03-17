@@ -17,6 +17,18 @@ void aggiungi (prodotto p, prodotto v[], int &d){
 	d++;
 }
 
+//funzione aggiungi ordinato
+void aggiungiOrdine(prodotto p, prodotto v[], int &d){
+	for(int i=0; i<d; i++){
+		if(p.nome>v[i].nome){
+			
+		}
+		
+	}
+
+	d++;
+}
+
 //funzione visualizza
 string visualizza (prodotto v[], int d){
 	string s;
@@ -102,7 +114,7 @@ int main(int argc, char** argv){
 				getline(cin, p.categoria);
 				cout<<"prezzo: ";
 				cin>>p.prezzo;
-				aggiungi(p, supermercato, d);
+				aggiungiOrdine(p, supermercato, d);
 				cout<<endl;
 			}
 			break;
@@ -152,14 +164,15 @@ int main(int argc, char** argv){
     				cin>>p.prezzo;
      	    		cout<<"prodotto modificato\n";
      	    		cout<<endl;
-   				}else{
+   				}
+				else{
        	 			cout<<"prodotto non trovato\n";
     			}
 			}
 			break;	
-		}
-		
-	}while(opzione!=0);
+		}	
+	}
+	while(opzione!=0);
 	
 	return 0;
 }
